@@ -4,17 +4,16 @@ set -o nounset
 set -o pipefail
 
 # setup for docker*
+apt-get remove docker docker-engine docker.io containerd runc
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common lsb-core linux-image-generic linux-image-extra-virtual
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 \
-      --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
- 
 # Next, point the package manager to the official Docker repository
-sudo apt-add-repository \'deb https://apt.dockerproject.org/repo/ ubuntu-xenial main\'
-#sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
 apt-get update
-apt-get install -y docker-ce
+apt-get install -y docker-ce docker-ce-cli containerd.io
 # make my home computer crash wtf, use official .deb instead  apt-get install -y virtualbox
 snap install kubectl --classic
 rm -r /opt/kubectx && git clone https://github.com/ahmetb/kubectx /opt/kubectx
