@@ -16,7 +16,8 @@ apt-get update
 apt-get install -y docker-ce docker-ce-cli containerd.io
 # make my home computer crash wtf, use official .deb instead  apt-get install -y virtualbox
 snap install kubectl --classic
-rm -r /opt/kubectx && git clone https://github.com/ahmetb/kubectx /opt/kubectx
+rm -fr /opt/kubectx
+git clone https://github.com/ahmetb/kubectx /opt/kubectx
 ln -fs /opt/kubectx/kubectx /usr/local/bin/kubectx
 ln -fs /opt/kubectx/kubens /usr/local/bin/kubens
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.28.2/minikube-linux-amd64 && chmod +x minikube && mv minikube /usr/local/bin/
