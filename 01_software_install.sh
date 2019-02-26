@@ -33,7 +33,7 @@ apt install -f
 # setup slack
 apt-get install -y libgnome-keyring0 gir1.2-gnomekeyring-1.0
 wget https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.7-amd64.deb
-dpkg -i slack-desktop-3.2.1-amd64.deb
+dpkg -i slack-desktop-3.3.7-amd64.deb
 apt --fix-broken install
 apt install -f
 apt-get install -y steam git snapd chromium-browser 
