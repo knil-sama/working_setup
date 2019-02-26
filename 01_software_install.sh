@@ -9,6 +9,7 @@ apt-get install -y git
 # oh my git
 # Copy the awesome fonts to ~/.fonts
 cd /tmp
+rm -Rf awesome-terminal-fonts
 git clone http://github.com/gabrielelana/awesome-terminal-fonts
 cd awesome-terminal-fonts
 git checkout patching-strategy
