@@ -18,10 +18,7 @@ apt-get install -y docker-ce docker-ce-cli containerd.io
 apt-get install -y virtualbox
 snap install kubectl --classic
 snap install helm --classic
-rm -fr /opt/kubectx
-git clone https://github.com/ahmetb/kubectx /opt/kubectx
-ln -fs /opt/kubectx/kubectx /usr/local/bin/kubectx
-ln -fs /opt/kubectx/kubens /usr/local/bin/kubens
+apt-get install -y kubectx
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.28.2/minikube-linux-amd64 && chmod +x minikube && mv minikube /usr/local/bin/
 minikube start
 chmod 774 /home/knil/.kube/config
