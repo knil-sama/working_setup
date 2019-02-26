@@ -27,6 +27,7 @@ sudo apt-get install -y sublime-text
 # setup skype
 wget https://repo.skype.com/latest/skypeforlinux-64.deb
 dpkg -i skypeforlinux-64.deb
+apt --fix-broken install
 apt install -f
 # setup slack
 apt-get install libgnome-keyring0 gir1.2-gnomekeyring-1.0
