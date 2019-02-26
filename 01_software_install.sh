@@ -31,11 +31,12 @@ dpkg -i skypeforlinux-64.deb
 apt --fix-broken install
 apt install -f
 # setup slack
-apt-get install libgnome-keyring0 gir1.2-gnomekeyring-1.0
+apt-get install -y libgnome-keyring0 gir1.2-gnomekeyring-1.0
 wget https://downloads.slack-edge.com/linux_releases/slack-desktop-3.2.1-amd64.deb
 dpkg -i slack-desktop-3.2.1-amd64.deb
+apt --fix-broken install
 apt install -f
-apt-get install --fix-broken -y steam git snapd chromium-browser 
+apt-get install -y steam git snapd chromium-browser 
 # bug on ubuntu 18.04 don't use snap install --classic slack
 snap install --classic vscode
 snap install spotify
