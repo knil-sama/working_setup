@@ -16,7 +16,8 @@ apt-get update
 apt-get install -y docker-ce docker-ce-cli containerd.io
 # make my home computer crash wtf, use official .deb instead  apt-get install -y virtualbox
 apt-get install -y virtualbox
-snap install kubectl helm --classic
+snap install kubectl --classic
+snap install helm --classic
 rm -fr /opt/kubectx
 git clone https://github.com/ahmetb/kubectx /opt/kubectx
 ln -fs /opt/kubectx/kubectx /usr/local/bin/kubectx
