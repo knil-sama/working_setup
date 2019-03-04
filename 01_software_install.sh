@@ -5,7 +5,7 @@ set -o pipefail
 
 apt-get update
 apt-get upgrade -y
-apt-get install -y git
+apt-get install -y git curl
 # oh my git
 # Copy the awesome fonts to ~/.fonts
 cd /tmp
