@@ -46,7 +46,7 @@ apt install -y openjdk-11-jdk
 #go get -u github.com/remind101/assume-role
 # echo "/home/clement/go/bin/assume-role" > ~/.bashrc
 # plantuml install
-ap-get install -y plantuml
+apt-get install -y plantuml
 apt-get install -y awscli
 snap install --classic vscode
 snap install spotify
