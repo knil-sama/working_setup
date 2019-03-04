@@ -38,12 +38,13 @@ apt-get install -y steam git snapd chromium-browser
 # install java
 apt install -y openjdk-11-jdk
 # go install and aws-role stuff
-bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-apt-get install -y golang bison
-source /home/clement/.gvm/scripts/gvm
-gvm install go1.7
-gvm use go1.7 --default
-go get -u github.com/remind101/assume-role
+#bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+#apt-get install -y golang bison
+#source /home/clement/.gvm/scripts/gvm
+#gvm install go1.7
+#gvm use go1.7 --default
+#go get -u github.com/remind101/assume-role
+# echo "/home/clement/go/bin/assume-role" > ~/.bashrc
 # plantuml install
 ap-get install -y plantuml
 apt-get install -y awscli
