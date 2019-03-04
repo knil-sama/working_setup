@@ -38,6 +38,7 @@ apt --fix-broken install
 apt install -f
 apt-get install -y steam git snapd chromium-browser 
 # bug on ubuntu 18.04 don't use snap install --classic slack
+apt-get install -y awscli
 snap install --classic vscode
 snap install spotify
 rm *.deb*
