@@ -49,4 +49,6 @@ ap-get install -y plantuml
 apt-get install -y awscli
 snap install --classic vscode
 snap install spotify
+#python
+apt-get install -y python3-pip
 rm *.deb*
