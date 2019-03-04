@@ -14,4 +14,4 @@ Plugin 'gmarik/Vundle.vim'
 \" add all your plugins here, note older versions of Vundle used Bundle instead of Plugin, All of your Plugins must be added before the following line
 
 call vundle#end()
-filetype plugin indent on" >  ~/.vimrc
+filetype plugin indent on" >  /home/clement/.vimrc
