@@ -22,3 +22,4 @@ apt-get install -y kubectx
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.28.2/minikube-linux-amd64 && chmod +x minikube && mv minikube /usr/local/bin/
 minikube start
 chmod 774 /home/knil/.kube/config
+pip3 install docker-compose
