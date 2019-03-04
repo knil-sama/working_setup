@@ -28,12 +28,12 @@ sudo apt-get install -y sublime-text
 # setup skype
 wget https://repo.skype.com/latest/skypeforlinux-64.deb
 dpkg -i skypeforlinux-64.deb || apt --fix-broken install -y
-apt install -f
+apt install -f -y
 # setup slack
 apt-get install -y libgnome-keyring0 gir1.2-gnomekeyring-1.0
 wget https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.7-amd64.deb
 dpkg -i slack-desktop-3.3.7-amd64.deb || apt --fix-broken install -y
-apt install -f
+apt install -f -y
 apt-get install -y steam git snapd chromium-browser 
 # install java
 apt install -y openjdk-11-jdk
