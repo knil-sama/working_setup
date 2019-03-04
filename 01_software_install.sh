@@ -37,7 +37,15 @@ dpkg -i slack-desktop-3.3.7-amd64.deb
 apt --fix-broken install
 apt install -f
 apt-get install -y steam git snapd chromium-browser 
-# bug on ubuntu 18.04 don't use snap install --classic slack
+# install java
+apt install -y openjdk-11-jdk
+# go install and aws-role stuff
+bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+gvm install go1.7
+gvm use go1.7 --default
+go get -u github.com/remind101/assume-role
+# plantuml install
+ap-get install -y plantuml
 apt-get install -y awscli
 snap install --classic vscode
 snap install spotify
