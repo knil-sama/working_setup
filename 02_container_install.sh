@@ -18,6 +18,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 sudo apt-get install -y virtualbox
 sudo snap install kubectl --classic
 sudo snap install helm --classic
+sudo rm -Rf /opt/kubectx
 sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
 sudo ln -fs /opt/kubectx/kubectx /usr/local/bin/kubectx
 sudo ln -fs /opt/kubectx/kubens /usr/local/bin/kubens
