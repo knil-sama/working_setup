@@ -24,5 +24,5 @@ sudo ln -fs /opt/kubectx/kubectx /usr/local/bin/kubectx
 sudo ln -fs /opt/kubectx/kubens /usr/local/bin/kubens
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.28.2/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 minikube start
-chmod 774 /home/knil/.kube/config
+chmod 774 ~/kube/config
 pip3 install docker-compose
