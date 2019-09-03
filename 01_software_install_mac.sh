@@ -7,7 +7,7 @@ set -o pipefail
 
 #sudo apt-get update
 #sudo apt-get upgrade -y
-sudo port git curl 
+sudo port install git curl 
 # oh my git
 git clone https://github.com/arialdomartini/oh-my-git.git ~/.oh-my-git && echo source ~/.oh-my-git/prompt.sh >> ~/.profile
 
@@ -20,3 +20,4 @@ brew install go
 brew cask install spotify
 brew install python
 pip3 install awscli --upgrade --user
+sudo port install jq

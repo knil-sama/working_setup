@@ -1,5 +1,4 @@
 # From https://realpython.com/vim-and-python-a-match-made-in-heaven/
-sudo apt-get install -y vim
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 echo "set nocompatible
 filetype off
