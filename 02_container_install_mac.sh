@@ -3,8 +3,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-sudo port install docker
-pip3 install docker-compose --user
+# download from dockerhub
 sudo port install kubectl-1.15
 sudo port select --set kubectl kubectl1.15
 sudo port install helm-2.12
