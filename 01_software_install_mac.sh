@@ -5,9 +5,8 @@ set -o pipefail
 
 # setup to use touch id with sudo
 
-#sudo apt-get update
-#sudo apt-get upgrade -y
-sudo port install git curl 
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install git curl
 # oh my git
 git clone https://github.com/arialdomartini/oh-my-git.git ~/.oh-my-git && echo source ~/.oh-my-git/prompt.sh >> ~/.profile
 
