@@ -34,7 +34,7 @@ sudo apt-get install -y libgnome-keyring0 gir1.2-gnomekeyring-1.0
 wget https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.7-amd64.deb
 sudo dpkg -i slack-desktop-3.3.7-amd64.deb || sudo apt --fix-broken install -y
 sudo apt install -f -y
-sudo apt-get install -y steam git snapd chromium-browser 
+sudo apt-get install -y npm git snapd chromium-browser 
 # install java
 sudo apt install -y openjdk-11-jdk
 # go install and aws-role stuff
@@ -50,6 +50,9 @@ apt-get install -y plantuml
 apt-get install -y awscli
 snap install --classic vscode
 snap install spotify
+# git commitizen
+sudo apt-get install -y npm 
+npm install -g commitizen 
 #python
 apt-get install -y python3-pip
 rm *.deb*
