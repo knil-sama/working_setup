@@ -52,7 +52,7 @@ snap install --classic vscode
 snap install spotify
 # git commitizen
 sudo apt-get install -y npm 
-npm install -g commitizen 
+sudo npm install -g commitizen 
 #python
-apt-get install -y python3-pip
+sudo apt-get install -y python3-pip
 rm *.deb*
