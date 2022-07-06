@@ -73,5 +73,5 @@ sudo apt-get install -y npm
 sudo npm install -g commitizen
 #python
 sudo apt-get install -y python3-pip
-pip3 install pre-commit
+sudo apt  install pre-commit
 rm *.deb
