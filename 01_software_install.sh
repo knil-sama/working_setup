@@ -63,9 +63,15 @@ codium --install-extension ms-vscode.makefile-tools
 codium--install-extension ryanluker.vscode-coverage-gutters
 codium --install-extension shyykoserhiy.git-autoconfig
 codium --install-extension VisualStudioExptTeam.vscodeintellicode
+codium --install-extension ms-azuretools.vscode-docker
+codium --install-extension matklad.rust-analyzer
+codium --install-extension vadimcn.vscode-lldb
+codium --install-extension serayuzgur.crates
+codium --install-extension usernamehw.errorlens
 # git commitizen
 sudo apt-get install -y npm
 sudo npm install -g commitizen
 #python
 sudo apt-get install -y python3-pip
+pip3 install pre-commit
 rm *.deb
