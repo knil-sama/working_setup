@@ -20,6 +20,7 @@ if ! [ -x "$(command -v docker)" ]; then
    sudo apt-get update
    sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
    sudo apt-get install -y virtualbox
+   sudo usermod -a -G docker $USER
 fi
 if ! [ -x "$(command -v kubectl)" ]; then
    sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
