@@ -75,3 +75,4 @@ sudo npm install -g commitizen
 sudo apt-get install -y python3-pip
 sudo apt install -y pre-commit
 rm *.deb
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
