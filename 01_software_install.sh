@@ -34,7 +34,7 @@ sudo snap install slack
 # install zoom
 if ! [ -x "$(command -v zoom)" ]; then
   wget https://zoom.us/client/latest/zoom_amd64.deb
-  sudo apt install ./zoom_amd64.deb
+  sudo apt install -y ./zoom_amd64.deb
 fi
 # install java
 sudo apt install -y openjdk-11-jdk
