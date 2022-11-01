@@ -12,5 +12,9 @@ docker pull docker.io/cuelang/cue:0.4.3
 if ! grep -qF "alias aws" ~/.bashrc; then
     echo "alias cue='docker run --rm -it -v $(pwd):/tmp -w /tmp docker.io/cuelang/cue:0.4.3'" > ~/.bashrc
 fi
-
-
+if ! [ -x "$(command -v sam)" ]; then
+    wget https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip
+    unzip aws-sam-cli-linux-x86_64.zip -d sam-installation
+    sudo ./sam-installation/install
+    rm -R ./sam-installation
+fi

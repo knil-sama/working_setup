@@ -1,5 +1,5 @@
 #https://jdhao.github.io/2018/12/24/centos_nvim_install_use_guide_en/
-sudo apt-get install vim
+sudo apt-get install -y vim
 pip3 install yapf jedi pynvim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

@@ -94,4 +94,6 @@ if ! [ -x "$(command -v mob)" ]; then
   curl -sL install.mob.sh | sudo sh
   sudo apt-get install -y gnustep-gui-runtime
 fi
+sudo apt install -y pre-commit
 rm *.deb
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
