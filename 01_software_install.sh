@@ -28,44 +28,70 @@ if ! [ -x "$(command -v subl)" ]; then
   sudo apt-get update
   sudo apt-get install -y sublime-text
 fi
-sudo apt-get install -y npm git snapd chromium-browser 
+sudo apt-get install -y npm git chromium-browser 
 # install slack
-sudo snap install slack
+if ! [ -x "$(command -v slack)" ]; then
+  wget https://downloads.slack-edge.com/releases/linux/4.28.184/prod/x64/slack-desktop-4.28.184-amd64.deb
+  sudo apt install ./slack-desktop-4.28.184-amd64.deb
+  rm slack-desktop-4.28.184-amd64.deb
+fi
 # install zoom
 if ! [ -x "$(command -v zoom)" ]; then
   wget https://zoom.us/client/latest/zoom_amd64.deb
   sudo apt install ./zoom_amd64.deb
+  rm zoom_amd64.deb
 fi
 # install java
 sudo apt install -y openjdk-11-jdk
 # plantuml install
 sudo apt-get install -y plantuml
 # vscode install
-sudo snap install codium --classic
-codium --install-extension DavidAnson.vscode-markdownlint
-codium --install-extension yzhang.markdown-all-in-one
-codium --install-extension redhat.vscode-yaml
-codium --install-extension GitHub.vscode-pull-request-github
-codium --install-extension janjoerke.jenkins-pipeline-linter-connector
-codium --install-extension mhutchie.git-graph
-codium --install-extension ms-azuretools.vscode-docker
-codium --install-extension ms-pyright.pyright
-codium --install-extension ms-python.python
-codium --install-extension njpwerner.autodocstring
-codium --install-extension ms-python.vscode-pylance
-codium --install-extension bungcip.better-toml
-codium --install-extension esbenp.prettier-vscode
-codium --install-extension ms-toolsai.jupyter
-codium --install-extension ms-toolsai.jupyter-keymap
-codium --install-extension ms-toolsai.jupyter-renderers
-codium --install-extension ms-vscode-remote.remote-containers
-codium --install-extension ms-vscode.makefile-tools
-codium--install-extension ryanluker.vscode-coverage-gutters
-codium --install-extension shyykoserhiy.git-autoconfig
-codium --install-extension VisualStudioExptTeam.vscodeintellicode
+if ! [ -x "$(command -v code)" ]; then
+  wget https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 -O code.deb
+  sudo apt install ./code.deb
+  code --install-extension DavidAnson.vscode-markdownlint
+  code --install-extension yzhang.markdown-all-in-one
+  code --install-extension redhat.vscode-yaml
+  code --install-extension GitHub.vscode-pull-request-github
+  code --install-extension janjoerke.jenkins-pipeline-linter-connector
+  code --install-extension mhutchie.git-graph
+  code --install-extension ms-azuretools.vscode-docker
+  code --install-extension ms-pyright.pyright
+  code --install-extension ms-python.python
+  code --install-extension njpwerner.autodocstring
+  code --install-extension ms-python.vscode-pylance
+  code --install-extension bungcip.better-toml
+  code --install-extension esbenp.prettier-vscode
+  code --install-extension ms-toolsai.jupyter
+  code --install-extension ms-toolsai.jupyter-keymap
+  code --install-extension ms-toolsai.jupyter-renderers
+  code --install-extension ms-vscode-remote.remote-containers
+  code --install-extension ms-vscode.makefile-tools
+  code --install-extension ryanluker.vscode-coverage-gutters
+  code --install-extension shyykoserhiy.git-autoconfig
+  code --install-extension VisualStudioExptTeam.vscodeintellicode
+  code --install-extension alessandrosangalli.mob-vscode-gui
+fi
+# nvm
+if ! [ -x "$(command -v nvm)" ]; then
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+  source ~/.bashrc
+  nvm install node
+  nvm use node
+fi
+if ! [ -x "$(command -v devcontainers)" ]; then
+  npm install -g @devcontainers/cli
+fi
 # git commitizen
-sudo apt-get install -y npm 
-sudo npm install -g commitizen 
+sudo npm install -g commitizen
 #python
 sudo apt-get install -y python3-pip
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+pipx install poetry black
+# mob tool
+if ! [ -x "$(command -v mob)" ]; then
+  curl -sL install.mob.sh | sudo sh
+  sudo apt-get install -y gnustep-gui-runtime
+fi
 rm *.deb
