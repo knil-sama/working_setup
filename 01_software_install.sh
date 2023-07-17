@@ -31,15 +31,16 @@ fi
 sudo apt-get install -y npm git chromium-browser 
 # install slack
 if ! [ -x "$(command -v slack)" ]; then
-  wget https://downloads.slack-edge.com/releases/linux/4.28.184/prod/x64/slack-desktop-4.28.184-amd64.deb
-  sudo apt install ./slack-desktop-4.28.184-amd64.deb
-  rm slack-desktop-4.28.184-amd64.deb
+  SLACK_VERSION=4.33.73
+  wget https://downloads.slack-edge.com/releases/linux/${SLACK_VERSION}/prod/x64/slack-desktop-${SLACK_VERSION}-amd64.deb
+  sudo apt install ./slack-desktop-${SLACK_VERSION}-amd64.deb
+  rm -f slack-desktop-${SLACK_VERSION}-amd64.deb
 fi
 # install zoom
 if ! [ -x "$(command -v zoom)" ]; then
   wget https://zoom.us/client/latest/zoom_amd64.deb
-  sudo apt install ./zoom_amd64.deb
-  rm zoom_amd64.deb
+  sudo apt install -y ./zoom_amd64.deb
+  rm -f zoom_amd64.deb
 fi
 # install java
 sudo apt install -y openjdk-11-jdk
@@ -47,8 +48,13 @@ sudo apt install -y openjdk-11-jdk
 sudo apt-get install -y plantuml
 # vscode install
 if ! [ -x "$(command -v code)" ]; then
-  wget https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 -O code.deb
-  sudo apt install ./code.deb
+  wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+  sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+  sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+  rm -f packages.microsoft.gpg
+  sudo apt install -y apt-transport-https
+  sudo apt update
+  sudo apt install -y code
   code --install-extension DavidAnson.vscode-markdownlint
   code --install-extension yzhang.markdown-all-in-one
   code --install-extension redhat.vscode-yaml
@@ -72,28 +78,33 @@ if ! [ -x "$(command -v code)" ]; then
   code --install-extension VisualStudioExptTeam.vscodeintellicode
   code --install-extension alessandrosangalli.mob-vscode-gui
 fi
-# nvm
-if ! [ -x "$(command -v nvm)" ]; then
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
-  source ~/.bashrc
-  nvm install node
-  nvm use node
-fi
-if ! [ -x "$(command -v devcontainers)" ]; then
-  npm install -g @devcontainers/cli
-fi
-# git commitizen
-sudo npm install -g commitizen
 #python
-sudo apt-get install -y python3-pip
+sudo apt-get install -y python3-pip python3-venv
 python3 -m pip install --user pipx
 python3 -m pipx ensurepath
-pipx install poetry black
+~/.local/bin/pipx install black
+~/.local/bin/pipx install poetry
 # mob tool
 if ! [ -x "$(command -v mob)" ]; then
   curl -sL install.mob.sh | sudo sh
   sudo apt-get install -y gnustep-gui-runtime
 fi
+rm -f *.deb
+if ! [ -x "$(command -v cargo)" ]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+fi
 sudo apt install -y pre-commit
-rm *.deb
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# nvm
+if ! [ -d "/usr/local/lib/node_modules" ]; then
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+  sudo mkdir -p /usr/local/lib/node_modules
+  sudo chown -R $USER /usr/local/lib/node_modules
+  echo "reload terminal to continue"
+fi
+# need to be run outside of script nvm install node
+# need to be rn outside of script nvm use node
+if ! [ -x "$(command -v devcontainers)" ]; then
+  npm install -g @devcontainers/cli
+fi
+# git commitizen
+sudo npm install -g commitizen
