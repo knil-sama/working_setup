@@ -82,11 +82,10 @@ if ! [ -x "$(command -v code)" ]; then
   code --install-extension alessandrosangalli.mob-vscode-gui
 fi
 #python
-sudo apt-get install -y python3-pip python3-venv
-python3 -m pip install --user pipx
-python3 -m pipx ensurepath
-~/.local/bin/pipx install black
-~/.local/bin/pipx install poetry
+sudo apt-get install -y python3-pip python3-venv pipx
+pipx ensurepath
+pipx install black
+pipx install poetry
 # mob tool
 if ! [ -x "$(command -v mob)" ]; then
   curl -sL install.mob.sh | sudo sh
