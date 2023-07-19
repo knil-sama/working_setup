@@ -48,3 +48,5 @@ if ! [ -x "$(command -v docker compose)" ]; then
    chmod +x ~/.docker/cli-plugins/docker-compose
    # works using docker compose now
 fi
+# troubleshooting some issue https://stackoverflow.com/questions/51342810/how-to-fix-dial-unix-var-run-docker-sock-connect-permission-denied-when-gro
+sudo setfacl --modify user:$USER:rw /var/run/docker.sock
