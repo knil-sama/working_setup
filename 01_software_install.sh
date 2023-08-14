@@ -106,7 +106,7 @@ fi
 # need to be run outside of script nvm install node
 # need to be rn outside of script nvm use node
 if ! [ -x "$(command -v devcontainers)" ]; then
-  npm install -g @devcontainers/cli
+  sudo npm install -g @devcontainers/cli
 fi
 # git commitizen
 sudo npm install -g commitizen
