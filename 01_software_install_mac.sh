@@ -6,34 +6,16 @@ set -o pipefail
 # setup to use touch id with sudo
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-" run twice solve potential rules issues ?!
+# run twice solve potential rules issues ?!
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> /Users/clement.demonchy/.zprofile
 eval "$(/usr/local/bin/brew shellenv)"
 brew install git curl
-brew --cask install sublime-text
-brew install python
+brew install --cask sublime-text
 pip3 install awscli --upgrade --user
-sudo port install jq
 brew install --cask google-chrome
-sudo apt-get install -y npm git chromium-browser 
-# install slack
-if ! [ -x "$(command -v slack)" ]; then
-  SLACK_VERSION=4.33.73
-  wget https://downloads.slack-edge.com/releases/linux/${SLACK_VERSION}/prod/x64/slack-desktop-${SLACK_VERSION}-amd64.deb
-  sudo apt install ./slack-desktop-${SLACK_VERSION}-amd64.deb
-  rm -f slack-desktop-${SLACK_VERSION}-amd64.deb
-fi
-# install zoom
-if ! [ -x "$(command -v zoom)" ]; then
-  wget https://zoom.us/client/latest/zoom_amd64.deb
-  sudo apt install -y ./zoom_amd64.deb
-  rm -f zoom_amd64.deb
-fi
-# install java
-sudo apt install -y openjdk-11-jdk
-# plantuml install
-sudo apt-get install -y plantuml
+# todo jq
+# todo
 # vscode install
 if ! [ -x "$(command -v code)" ]; then
   wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
