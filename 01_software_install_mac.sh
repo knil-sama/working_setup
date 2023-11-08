@@ -12,9 +12,9 @@ set -o pipefail
 eval "$(/usr/local/bin/brew shellenv)"
 brew install git curl
 brew install --cask sublime-text
-pip3 install awscli --upgrade --user
 brew install --cask google-chrome
-# todo jq
+brew install jq
+brew install --cask visual-studio-code
 # todo
 # vscode install
 if ! [ -x "$(command -v code)" ]; then
