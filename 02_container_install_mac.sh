@@ -3,6 +3,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+brew install docker
+brew install docker-compose
 # download from dockerhub
 sudo port install kubectl-1.15
 sudo port select --set kubectl kubectl1.15
