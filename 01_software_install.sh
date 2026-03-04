@@ -78,37 +78,7 @@ sudo apt install -y openjdk-11-jdk
 #  Zed install
 if ! [ -x "$(command -v zed)" ]; then
     curl -f https://zed.dev/install.sh | sh
-    echo """// Zed settings
-    //
-    // For information on how to configure Zed, see the Zed
-    // documentation: https://zed.dev/docs/configuring-zed
-    //
-    // To see all of Zed's default settings without changing your
-    // custom settings, run `zed: open default settings` from the
-    // command palette (cmd-shift-p / ctrl-shift-p)
-    {
-      "disable_ai": true,
-      "base_keymap": "VSCode",
-      "icon_theme": "Zed (Default)",
-      "ui_font_size": 16,
-      "buffer_font_size": 15,
-      "theme": {
-        "mode": "dark",
-        "light": "One Light",
-        "dark": "One Dark",
-      },
-      "auto_install_extensions": {
-        "html": true,
-        "dockerfile": true,
-        "docker-compose": true
-        "csv": true
-        "github-actions": true
-        "json5": true
-        "jsonnet": true
-        "toml": true
-      }
-    }
-    """  >  ~/.config/zed/settings.json
+    echo '{"disable_ai":true,"base_keymap":"VSCode","icon_theme":"Zed (Default)","ui_font_size":16,"buffer_font_size":15,"theme":{"mode":"dark","light":"One Light","dark":"One Dark"},"auto_install_extensions":{"html":true,"dockerfile":true,"docker-compose":true,"csv":true,"github-actions":true,"json5":true,"jsonnet":true,"toml":true},"languages":{"Python":{"language_servers":["ty","!basedpyright"]}}}' >  ~/.config/zed/settings.json
 fi
 #python uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -153,4 +123,11 @@ fi
 # need to be rn outside of script nvm use node
 if ! [ -x "$(command -v devcontainers)" ]; then
   sudo npm install -g @devcontainers/cli
+fi
+sudo apt-get install -y flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+if ! [ -x "$(command -v obsidian)" ]; then
+    flatpak install -y flathub md.obsidian.Obsidian
+    echo "alias obsidian='flatpak run md.obsidian.Obsidian'" >> ~/.bashrc
+
 fi
