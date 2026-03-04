@@ -27,7 +27,7 @@ if ! [ -x "$(command -v subl)" ]; then
   sudo apt-get update
   sudo apt-get install -y sublime-text
 fi
-sudo apt-get install -y npm git chromium-browser 
+sudo apt-get install -y npm git chromium-browser
 # install slack
 if ! [ -x "$(command -v slack)" ]; then
   SLACK_VERSION=4.33.73
@@ -44,35 +44,71 @@ fi
 # install java
 sudo apt install -y openjdk-11-jdk
 # plantuml install
-sudo apt-get install -y plantuml
+# I use mermaid now sudo apt-get install -y plantuml
 # codium install
-if ! [ -x "$(command -v codium)" ]; then
-  wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
-  sudo sh -c 'echo "deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg] https://download.vscodium.com/debs vscodium main" > /etc/apt/sources.list.d/vscodium.list'
-  sudo apt update
-  sudo apt install -y codium
-  code --install-extension DavidAnson.vscode-markdownlint
-  code --install-extension yzhang.markdown-all-in-one
-  code --install-extension redhat.vscode-yaml
-  code --install-extension GitHub.vscode-pull-request-github
-  # code --install-extension janjoerke.jenkins-pipeline-linter-connector
-  code --install-extension mhutchie.git-graph
-  code --install-extension ms-azuretools.vscode-docker
-  code --install-extension ms-pyright.pyright
-  code --install-extension ms-python.python
-  code --install-extension njpwerner.autodocstring
-  code --install-extension ms-python.vscode-pylance
-  code --install-extension bungcip.better-toml
-  code --install-extension esbenp.prettier-vscode
-  code --install-extension ms-toolsai.jupyter
-  code --install-extension ms-toolsai.jupyter-keymap
-  code --install-extension ms-toolsai.jupyter-renderers
-  code --install-extension ms-vscode-remote.remote-containers
-  code --install-extension ms-vscode.makefile-tools
-  code --install-extension ryanluker.vscode-coverage-gutters
-  code --install-extension shyykoserhiy.git-autoconfig
-  code --install-extension VisualStudioExptTeam.vscodeintellicode
-  code --install-extension alessandrosangalli.mob-vscode-gui
+# I use Zed now
+# if ! [ -x "$(command -v codium)" ]; then
+#   wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+#   sudo sh -c 'echo "deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg] https://download.vscodium.com/debs vscodium main" > /etc/apt/sources.list.d/vscodium.list'
+#   sudo apt update
+#   sudo apt install -y codium
+#   code --install-extension DavidAnson.vscode-markdownlint
+#   code --install-extension yzhang.markdown-all-in-one
+#   code --install-extension redhat.vscode-yaml
+#   code --install-extension GitHub.vscode-pull-request-github
+#   # code --install-extension janjoerke.jenkins-pipeline-linter-connector
+#   code --install-extension mhutchie.git-graph
+#   code --install-extension ms-azuretools.vscode-docker
+#   code --install-extension ms-pyright.pyright
+#   code --install-extension ms-python.python
+#   code --install-extension njpwerner.autodocstring
+#   code --install-extension ms-python.vscode-pylance
+#   code --install-extension bungcip.better-toml
+#   code --install-extension esbenp.prettier-vscode
+#   code --install-extension ms-toolsai.jupyter
+#   code --install-extension ms-toolsai.jupyter-keymap
+#   code --install-extension ms-toolsai.jupyter-renderers
+#   code --install-extension ms-vscode-remote.remote-containers
+#   code --install-extension ms-vscode.makefile-tools
+#   code --install-extension ryanluker.vscode-coverage-gutters
+#   code --install-extension shyykoserhiy.git-autoconfig
+#   code --install-extension VisualStudioExptTeam.vscodeintellicode
+#   code --install-extension alessandrosangalli.mob-vscode-gui
+# fi
+#  Zed install
+if ! [ -x "$(command -v zed)" ]; then
+    curl -f https://zed.dev/install.sh | sh
+    echo """// Zed settings
+    //
+    // For information on how to configure Zed, see the Zed
+    // documentation: https://zed.dev/docs/configuring-zed
+    //
+    // To see all of Zed's default settings without changing your
+    // custom settings, run `zed: open default settings` from the
+    // command palette (cmd-shift-p / ctrl-shift-p)
+    {
+      "disable_ai": true,
+      "base_keymap": "VSCode",
+      "icon_theme": "Zed (Default)",
+      "ui_font_size": 16,
+      "buffer_font_size": 15,
+      "theme": {
+        "mode": "dark",
+        "light": "One Light",
+        "dark": "One Dark",
+      },
+      "auto_install_extensions": {
+        "html": true,
+        "dockerfile": true,
+        "docker-compose": true
+        "csv": true
+        "github-actions": true
+        "json5": true
+        "jsonnet": true
+        "toml": true
+      }
+    }
+    """  >  ~/.config/zed/settings.json
 fi
 #python uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -88,26 +124,33 @@ if ! [ -d "/usr/local/lib/node_modules" ]; then
   sudo chown -R $USER /usr/local/lib/node_modules
   echo "reload terminal to continue"
 fi
+if ! [ -x "$(command -v pnpm)" ]; then
+  curl -fsSL https://get.pnpm.io/install.sh | sh -
+ source ~/.bashrc
+fi
 if ! [ -x "$(command -v bruno)" ]; then
   # Bruno install
-  # Create keyrings directory 
+  # Create keyrings directory
   sudo mkdir -p /etc/apt/keyrings
-  # Update and install GPG and curl 
-  sudo apt update && sudo apt install gpg curl 
-  # List existing keys (optional) 
-  sudo gpg --list-keys 
-  # Add the Bruno repository key 
-  curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9FA6017ECABE0266" | gpg --dearmor | sudo tee /etc/apt/keyrings/bruno.gpg > /dev/null 
-  # Set permissions for the GPG key file 
-  sudo chmod 644 /etc/apt/keyrings/bruno.gpg 
-  # Add the Bruno repository 
-  echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/bruno.gpg] http://debian.usebruno.com/ bruno stable" | sudo tee /etc/apt/sources.list.d/bruno.list 
-  # Update and install Bruno 
+  # Update and install GPG and curl
+  sudo apt update && sudo apt install gpg curl
+  # List existing keys (optional)
+  sudo gpg --list-keys
+  # Add the Bruno repository key
+  curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x9FA6017ECABE0266" | gpg --dearmor | sudo tee /etc/apt/keyrings/bruno.gpg > /dev/null
+  # Set permissions for the GPG key file
+  sudo chmod 644 /etc/apt/keyrings/bruno.gpg
+  # Add the Bruno repository
+  echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/bruno.gpg] http://debian.usebruno.com/ bruno stable" | sudo tee /etc/apt/sources.list.d/bruno.list
+  # Update and install Bruno
   sudo apt-get update
   sudo apt-get install bruno -y
+fi
+if ! [ -x "$(command -v bru)" ]; then
+  pnpm install -g @usebruno/cli
 fi
 # need to be run outside of script nvm install node
 # need to be rn outside of script nvm use node
 if ! [ -x "$(command -v devcontainers)" ]; then
   sudo npm install -g @devcontainers/cli
-fi        
+fi
